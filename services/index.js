@@ -1,10 +1,11 @@
 onload = ()=> fillHome()
 
 const getData = async () => {
-  const data = await fetch(`https://newsapi.org/v2/top-headlines?country=br&category=technology&pageSize=100&apiKey=331dbd74054842c7951471628b189d72`)
+  const data = await fetch('https://current-news.p.rapidapi.com/news/technology', {method: "GET", headers: {'X-RapidAPI-Key': 'a548e897c8mshee0452d3e73b26ep14e469jsn3125e0ca1c43',
+  'X-RapidAPI-Host': 'current-news.p.rapidapi.com'}})
   const jsonData =  await data.json()
 
-  return jsonData.articles
+  return jsonData.news
 }
 
 
@@ -14,6 +15,7 @@ const fillHome = async () => {
   const allData = await getData()
   const allArticles = await allData.filter(data=> data.urlToImage !== null)  
   const topVideos = []
+  console.log(allData)
 
   main.innerHTML = `
   <h1 class="title-logo">Tech Office</h1>
